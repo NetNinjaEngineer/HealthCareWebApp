@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- Notification Icon -->
+  <div id="notificationIcon">
+    <!-- Initially display the icon without any count -->
+    <span class="icon"></span>
+  </div>
+
+  <!-- Notification Page -->
+  <div id="notificationContainer">
+    <!-- Existing or saved notifications will appear here -->
+  </div>
+
+  <script>
+
+    let unreadNotificationCount = 0; // Initialize unread notification count
+
+    // Function to create a new notification and add it to the container
+    function createNotification(message) {
+      const notificationContainer = document.getElementById('notificationContainer');
+
+      // Create a new notification element
+      const notification = document.createElement('div');
+      notification.classList.add('notification');
+      notification.innerHTML = `
+            <span class="message">${message}</span>
+            <button class="close-btn" onclick="removeNotification(this)">×</button>
+            `;
+
+      // Add the new notification to the container
+      notificationContainer.appendChild(notification);
+
+      // Increase unread notification count and update the notification icon
+      unreadNotificationCount++;
+      updateNotificationIcon();
+    }
+
+    // Function to remove a specific notification
+    function removeNotification(btn) {
+      const notification = btn.parentElement;
+      notification.parentElement.removeChild(notification);
+
+      // Decrease unread notification count and update the notification icon
+      unreadNotificationCount = Math.max(0, unreadNotificationCount - 1);
+      updateNotificationIcon();
+    }
+
+    // Function to update the notification icon count
+    function updateNotificationIcon() {
+      const notificationIcon = document.getElementById('notificationIcon');
+      const icon = notificationIcon.querySelector('.icon');
+
+      // Update the icon count display
+      if (unreadNotificationCount > 0) {
+        icon.textContent = unreadNotificationCount;
+        icon.style.display = 'block'; // Show the icon
+      } else {
+        icon.style.display = 'none'; // Hide the icon if count is zero
+      }
+    }
+
+    let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+    let appointment = {
+      patient: "Mohamed",
+      doctor: "Mahmoud"
+    }
+    
+    let appointment2 = {
+      patient: "Mohamed",
+      doctor: "Ali"
+    }
+
+    appointments.push(appointment);
+    appointments.push(appointment2);
+
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+
+    createNotification(`appoint created ${appointment.patient}`)
+    createNotification(`appoint created ${appointment2.patient}`)
+
+  </script>
+</body>
+
+</html>

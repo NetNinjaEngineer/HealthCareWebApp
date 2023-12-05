@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;1,200&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+
 }
 
 body {
-  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
 }
 
 /* Sidebar Styles */
@@ -15,36 +19,55 @@ body {
   position: fixed;
   top: 0;
   left: 0px;
-  background-color: #333;
+  background-color: #F4F9FF;
   overflow-x: hidden;
   padding-top: 20px;
   transition: 0.3s;
+}
+
+.sidebar #main {
+  text-decoration: none;
 }
 
 .sidebar h2 {
   color: #fff;
   text-align: center;
   margin-bottom: 20px;
+  width: 90%;
+  background-color: #0060D3;
+  padding: 10px;
+  border-radius: 20px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 600;
+  box-shadow: 0px 5px 50px 5px #a0c7f7;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  position: fixed;
+  top: 100px;
+  left: 20px
 }
 
 .sidebar li {
   padding: 8px 16px;
 }
 
-.sidebar a {
+.sidebar ul li a {
   text-decoration: none;
-  color: #fff;
+  color: #ABACAB;
   display: block;
   transition: 0.3s;
+  font-size: 15px;
+  width: 100%;
 }
 
-.sidebar a:hover {
-  background-color: #555;
+.sidebar ul li a:hover {
+  border-bottom: 3px solid #005fd368;
+  border-radius: 1px;
+  transition: 0.1s ease;
 }
 
 /* Content Styles */
@@ -54,58 +77,291 @@ body {
   transition: 0.3s;
 }
 
-header {
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 250px;
-  width: 100%;
-}
-
-header h1 {
-  margin-left: 20px;
-}
 
 main {
   padding: 20px;
 }
 
-footer {
-  background-color: #333;
+main .sec1 {
+  width: 100%;
+  margin: auto;
+  padding: 50px;
+  background-color: #0060D3;
   color: #fff;
-  text-align: center;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+main .sec1 .image {
+  width: 50%;
+}
+
+main .sec1 .title {
+  font-size: 30px;
+}
+
+main .sec1 .button button {
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #63a6f7;
+  background-color: #fff;
+  border-radius: 20px;
+  border: none;
+  margin-top: 20px;
+}
+
+main .SEC {
+  box-shadow: 0px 0px 0px 0px #63a6f7;
+}
+
+
+main .SEC .sec2 {
+  margin-top: 50px;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0px 0px 30px 20px #d6e3f24a;
+}
+
+main .SEC .sec2 .head {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+main .SEC .sec2 .head .title {
+  font-weight: 800;
+  font-size: 1.86em;
+}
+
+main .SEC .sec2 .head button {
+  outline: none;
+  border: none;
+  background-color: #fff;
   padding: 10px;
-  position: fixed;
-  bottom: 0;
-  left: 250px;
+  border: 1px solid #005fd372;
+  border-radius: 8px;
+  color: #005fd3bb;
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+main .SEC .sec2 .head button:hover {
+  background-color: #005fd3bb;
+  color: white;
+}
+
+main .SEC .sec2 .doctors {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 15px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+main .SEC .sec2 .doctors .doctor {
+  background-color: #fff;
+  box-shadow: 0px 0px 30px 20px #f4f9ff60;
+  transition: transform 0.5s ease;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+main .SEC .sec2 .doctors .doctor .image {
+  width: 100%;
+  height: 300px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+main .SEC .sec2 .doctors .doctor .image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+main .SEC .sec2 .doctors .doctor .info {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 80px 0px rgba(176, 205, 240, 0.563);
+}
+
+main .SEC .sec2 .doctors .doctor .info .name {
+  font-weight: 700;
+}
+
+main .SEC .sec2 .doctors .doctor .info .dept {
+  font-weight: 500;
+}
+
+main .SEC .sec2 .doctors .doctor .image:hover {
+  background-color: #67a8f877;
+}
+
+main .SEC .sec2 .doctors .doctor .image img:hover {
+  opacity: 0.5;
+
+} 
+
+main .patientappointments,
+main .employeeSchedual {
+    width: 100%;
+    margin-top: 50px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 20px #F4F9FF;
+}
+
+main .patientappointments .header .title,
+main .employeeSchedual .header .title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+main .patientappointments .header .data,
+main .employeeSchedual .header .data {
+  margin-top: 15px;
+}
+
+.tableAppointment,
+.scheduleTable {
+  width: calc(100% - 250px);
+  border-collapse: collapse;
   width: 100%;
 }
 
-table {
-  width: calc(100% - 250px);
-  border-collapse: collapse;
-  position: fixed;
-  top: 150px;
-  left: 250px;
-  right: -10px;
-}
-
-.appointment-table h2 {
-  position: fixed;
-  top: 100px;
-  left: 260px;
-}
-
-table th, table td {
-  border: 1px solid #ccc;
+table th {
   padding: 8px;
   text-align: left;
+  border: none;
+  font-size: 1.1em;
+}
+table td {
+  padding: 8px;
+  text-align: left;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #050303b1;
 }
 
 table th {
-  background-color: #f2f2f2;
+  border-bottom: 2px solid #00000063;
+}
+
+main .headerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  /* background-color: #ffffffa7; */
+  background-color: #fff;
+  padding: 30px 10px;
+  /* border-radius: 10px; */
+  box-shadow: 0 0 80px 0px rgba(182, 200, 222, 0.284);
+  position: sticky;
+  top: 0px;
+  z-index: 1000;
+}
+
+main .headerBar .username h2 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+main .headerBar .username h2 span {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+main .headerBar .search-notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 35%;
+}
+
+main .headerBar .search-notification svg.notification {
+  width: 50px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  background-color: #0060D3;
+  padding:  10px;
+  cursor: pointer;
+}
+
+main .headerBar .search-notification input {
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  outline: 2px solid #67a8f8;
+  background-color: #fff;
+  width: 100%;
+  border: none;
+  cursor: text;
+  margin-right: 10px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+main .headerBar .search-notification .searchIcon {
+    position: relative;
+    left: 30px;
+    color: #418EFD;
+}
+
+.patientappointments .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+.patientappointments .header .list #appointments {
+  outline: none;
+  border: none;
+  border: 2px solid #418EFD;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.patientappointments .header .list #appointments option {
+  background-color: #fff;
+}
+
+
+.employeeSchedual .header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.employeeSchedual .header .page input {
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+  outline: 2px solid #67a8f8;
+  background-color: #fff;
+  width: 100%;
+  border: none;
+  cursor: text;
+  margin-right: 10px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.custom .dropdown a {
+  background-color: #F4F9FF;
+  outline: none;
+  border: none;
+  color:#ABACAB;
 }
