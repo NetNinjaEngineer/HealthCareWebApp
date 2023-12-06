@@ -1,23 +1,48 @@
+let closeBtn = document.getElementById("closeBtn");
+let openBtn = document.getElementById("openBtn");
+let sidebar = document.querySelector(".sidebar");
+let content = document.querySelector(".content");
+let mainInfo = document.querySelector("main .SEC .sec1 .info");
+
+closeBtn.addEventListener("click", (e) => {
+  mainInfo.style.marginTop = "100px";
+  sidebar.style.display = "none";
+  sidebar.style.width = "0px"
+  content.style.marginLeft = "0px"
+  openBtn.style.display = "block";
+})
+
+openBtn.addEventListener("click", () => {
+  mainInfo.style.margin = '35px auto'
+  sidebar.style.display = "block";
+  sidebar.style.width = "250px"
+  content.style.marginLeft = "250px"
+  openBtn.style.display = "none";
+})
+
 async function loadAppointments() {
   var tableData = document.querySelector(".patientappointments .data .tableAppointment tbody");
   try {
     var response = await fetch('https://localhost:7266/api/Features/UpcomingAppointments');
-    var data = await response.json();
 
-    for (let i = 0; i < data.length; i++) {
-      tableData.innerHTML += `
-          <tr>
-            <td>${data[i].patientName}</td>
-            <td>${data[i].employeeName}</td>
-            <td>${new Date(data[i].appointmentDate).toDateString()}</td>
-            <td>${data[i].appointmentTime}</td>
-            <td>${data[i].paid}</td>
-          </tr>
-    `;
+    if (response.ok) {
+      var data = await response.json();
+
+      for (let i = 0; i < data.length; i++) {
+        tableData.innerHTML += `
+            <tr>
+              <td>${data[i].patientName}</td>
+              <td>${data[i].employeeName}</td>
+              <td>${new Date(data[i].appointmentDate).toDateString()}</td>
+              <td>${data[i].appointmentTime}</td>
+              <td>${data[i].paid}</td>
+            </tr>
+      `;
+      }
     }
 
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.log(error)
   }
 }
 
@@ -54,7 +79,7 @@ async function toggleAppointments() {
         }
       }
       catch (error) {
-        console.error("Error fetching data:", error);
+        console.log(error)
       }
     } else if (selectedValue === "Current Appointments") {
       title.innerHTML = "Current Appointments";
@@ -77,7 +102,7 @@ async function toggleAppointments() {
         }
       }
       catch (error) {
-        console.error("Error fetching data:", error);
+        console.log(error)
       }
 
 
@@ -87,22 +112,26 @@ async function toggleAppointments() {
 
       try {
         var response = await fetch('https://localhost:7266/api/Features/GetPaidAppointments');
-        var data = await response.json();
+        if (response.ok) {
+          var data = await response.json();
 
-        for (let i = 0; i < data.length; i++) {
-          tableData.innerHTML += `
-          <tr>
-            <td>${data[i].patient}</td>
-            <td>${data[i].doctor}</td>
-            <td>${new Date(data[i].appointmentDate).toDateString()}</td>
-            <td>${data[i].appointmentTime}</td>
-            <td>${data[i].paid}</td>
-          </tr>
+          for (let i = 0; i < data.length; i++) {
+            tableData.innerHTML += `
+            <tr>
+              <td>${data[i].patient}</td>
+              <td>${data[i].doctor}</td>
+              <td>${new Date(data[i].appointmentDate).toDateString()}</td>
+              <td>${data[i].appointmentTime}</td>
+              <td>${data[i].paid}</td>
+            </tr>
         `;
+          }
+        } else {
+          console.error("Response not ok", response.status)
         }
       }
       catch (error) {
-        console.error("Error fetching data:", error);
+        console.log(error)
       }
 
 
@@ -116,20 +145,24 @@ async function loadEmployeeScedules() {
   var tableData = document.querySelector(".employeeSchedual tbody");
   try {
     var response = await fetch('https://localhost:7266/api/Features/GetEmployeeSchedules');
-    var data = await response.json();
+    if (response.ok) {
+      var data = await response.json();
 
-    for (let i = 0; i < data.length; i++) {
-      tableData.innerHTML += `
-        <tr>
-          <td>${data[i].employeeName}</td>
-          <td>${data[i].days}</td>
-          <td>${data[i].schedule}</td>
-          <td>${data[i].jobTitle}</td>
-        </tr>
-      `;
+      for (let i = 0; i < data.length; i++) {
+        tableData.innerHTML += `
+          <tr>
+            <td>${data[i].employeeName}</td>
+            <td>${data[i].days}</td>
+            <td>${data[i].schedule}</td>
+            <td>${data[i].jobTitle}</td>
+          </tr>
+        `;
+      }
+    } else {
+      console.error("Response not ok: ", response.status)
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.log(error)
   }
 }
 
@@ -160,7 +193,11 @@ function searchSchedule(searchQuery) {
 
   fetch(api, resquestData)
     .then(response => {
-      return response.json();
+
+      if (!response.ok)
+        return new Error("Response not ok");
+      else
+        return response.json();
     })
     .then(data => {
       displayData(data);
@@ -191,28 +228,36 @@ function clearResults() {
   scheduales.innerHTML = ' ';
 }
 
-
 async function getDoctors(api) {
   const doctorsContainer = document.querySelector(".content main .sec2 .doctors");
-  const response = await fetch(api);
-  const data = await response.json();
-  const length = data.length - 2;
+  try {
+    const response = await fetch(api);
 
-  for (let i = 0; i < length; i++) {
-    doctorsContainer.innerHTML += `
-      <div class="doctor">
-        <div class="image">
-          <img src= ${data[i].imageUrl}>
-        </div>
-        <div class="info">
-          <div class="name">DR. ${data[i].firstName} ${data[i].lastName}</div>
-          <div class="dept">${data[i].department}</div>
-        </div>
-      </div>
-    `;
+    if (!response.ok)
+      throw new Error("Response not ok: ", response.status);
+    else {
+      const data = await response.json();
+      const length = data.length - 2;
 
+      for (let i = 0; i < length; i++) {
+        doctorsContainer.innerHTML += `
+        <div class="doctor">
+          <div class="image">
+            <img src= ${data[i].imageUrl}>
+          </div>
+          <div class="info">
+            <div class="name">DR. ${data[i].firstName} ${data[i].lastName}</div>
+            <div class="dept">${data[i].department}</div>
+          </div>
+        </div>
+      `;
+
+      }
+    }
+
+  } catch (error) {
+    console.log(error);
   }
-
 }
 
 getDoctors("https://localhost:7266/api/Features/GetDoctors");

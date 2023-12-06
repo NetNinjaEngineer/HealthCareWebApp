@@ -8,6 +8,10 @@
 
 }
 
+html {
+  touch-action: manipulation;
+}
+
 body {
   background-color: #f0f0f0;
 }
@@ -19,28 +23,39 @@ body {
   position: fixed;
   top: 0;
   left: 0px;
-  background-color: #F4F9FF;
+  background-color: #0060D3;
   overflow-x: hidden;
   padding-top: 20px;
   transition: 0.3s;
+  border-top-right-radius: 100px;
 }
 
-.sidebar #main {
-  text-decoration: none;
-}
-
-.sidebar h2 {
+.sidebar #closeBtn,
+.sidebar #openBtn {
+  outline: none;
+  border: none;
   color: #fff;
-  text-align: center;
-  margin-bottom: 20px;
-  width: 90%;
-  background-color: #0060D3;
-  padding: 10px;
-  border-radius: 20px;
-  margin: auto;
-  font-size: 20px;
-  font-weight: 600;
-  box-shadow: 0px 5px 50px 5px #a0c7f7;
+  cursor: pointer;
+  top: 53px;
+}
+
+.sidebar #closeBtn {
+  position: absolute;
+  right: 53px;
+}
+
+#openBtn {
+  display: none;
+  width: 40px;
+  padding: 10px 0;
+  background-color: #418EFD;
+  text-align: left;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: fixed;
+  top: 60px;
+  color: white;
+  cursor: pointer;
 }
 
 .sidebar ul {
@@ -57,20 +72,14 @@ body {
 
 .sidebar ul li a {
   text-decoration: none;
-  color: #ABACAB;
+  color: #ffffff;
   display: block;
   transition: 0.3s;
-  font-size: 15px;
+  font-size: 18px;
   width: 100%;
+  font-weight: 500;
 }
 
-.sidebar ul li a:hover {
-  border-bottom: 3px solid #005fd368;
-  border-radius: 1px;
-  transition: 0.1s ease;
-}
-
-/* Content Styles */
 .content {
   margin-left: 250px;
   padding: 20px;
@@ -93,9 +102,10 @@ main .SEC .sec1 {
 }
 
 main .SEC .sec1 .info {
-  width: 50%;
-  padding: 20px;
+  width: 60%;
+  padding: 0px 8px;
   text-align: center;
+  margin: 35px auto;
 }
 
 main .SEC .sec1 .image {
