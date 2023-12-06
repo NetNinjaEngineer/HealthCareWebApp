@@ -202,7 +202,7 @@ async function getDoctors(api) {
     doctorsContainer.innerHTML += `
       <div class="doctor">
         <div class="image">
-          <img src="../images/18.jpg">
+          <img src= ${data[i].imageUrl}>
         </div>
         <div class="info">
           <div class="name">DR. ${data[i].firstName} ${data[i].lastName}</div>

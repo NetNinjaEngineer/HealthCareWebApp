@@ -13,7 +13,7 @@ async function loadMedicines() {
           medicines.innerHTML += `
             <div class="medicine">
               <div class="image">
-                <img src= "../images/Aspirin-Regular-extra-strength-100ct-carton.avif" >
+                <img src= "${data[i].imagePath}" >
               </div>
               <div class="info">
                 <div class="main">
@@ -87,7 +87,7 @@ function displayResults(data) {
         const imageDiv = document.createElement('div');
         imageDiv.classList.add('image');
         const image = document.createElement('img');
-        image.src = "../images/Aspirin-Regular-extra-strength-100ct-carton.avif";
+        image.src = `${medicine.imagePath}`;
         imageDiv.appendChild(image);
 
         const infoDiv = document.createElement('div');
