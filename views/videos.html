@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch(`https://localhost:7266/api/MedicalVideos/7`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/octet-stream'
+        }
+      })
+        .then(response => response.blob())
+        .then(videoBlob => {
+          const videoURL = URL.createObjectURL(videoBlob);
+          const videoElement = document.createElement('video');
+          videoElement.src = videoURL;
+          videoElement.controls = true;
+          videoElement.autoplay = true;
+          document.body.appendChild(videoElement);
+        })
+        .catch(error => {
+          console.error('Error fetching video:', error);
+        });
+    })
+
+
+
+    // fetch('https://localhost:7266/api/Employees/GetEmployeeImageBlob?id=9')
+    //   .then(response => response.blob())
+    //   .then(blob => {
+    //     const url = URL.createObjectURL(blob);
+    //     const img = document.createElement('img');
+    //     img.src = url;
+    //     document.body.appendChild(img);
+    //   })
+    //   .catch(error => console.error('Error:', error));
+
+    // fetch("https://localhost:7266/api/Features/GetMedicinesWithDosages")
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     data.forEach(element => {
+    //       fetch(`https://localhost:7266/api/Employees/GetEmployeeImageBlob?id=${element.medicineId}`)
+    //         .then(response => response.blob())
+    //         .then(blob => {
+    //           const url = URL.createObjectURL(blob);
+    //           const img = document.createElement('img');
+    //           img.src = url;
+    //           document.body.appendChild(img);
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    //     });
+    //   })
+
+  </script>
+</body>
+
+</html>

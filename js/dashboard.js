@@ -1,8 +1,12 @@
-let closeBtn = document.getElementById("closeBtn");
-let openBtn = document.getElementById("openBtn");
-let sidebar = document.querySelector(".sidebar");
-let content = document.querySelector(".content");
-let mainInfo = document.querySelector("main .SEC .sec1 .info");
+const closeBtn = document.getElementById("closeBtn"),
+  openBtn = document.getElementById("openBtn"),
+  sidebar = document.querySelector(".sidebar"),
+  content = document.querySelector(".content"),
+  mainInfo = document.querySelector("main .SEC .sec1 .info");
+
+// const video = document.getElementById('vid');
+// const playButton = document.querySelector('playbtn');
+
 
 closeBtn.addEventListener("click", (e) => {
   mainInfo.style.marginTop = "100px";
@@ -19,6 +23,27 @@ openBtn.addEventListener("click", () => {
   content.style.marginLeft = "250px"
   openBtn.style.display = "none";
 })
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+  const body = document.querySelector('body');
+  body.classList.toggle('dark-mode');
+
+  // Save user preference in localStorage
+  const isDarkMode = body.classList.contains('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode);
+}
+
+// Check if dark mode preference exists in localStorage on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const isDarkMode = JSON.parse(localStorage.getItem('darkMode'));
+  const body = document.querySelector('body');
+
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+  }
+});
+
 
 async function loadAppointments() {
   var tableData = document.querySelector(".patientappointments .data .tableAppointment tbody");
@@ -271,3 +296,48 @@ function loadAllDoctorsPage() {
 }
 
 loadAllDoctorsPage();
+
+window.onload = function () {
+  const labVideo = document.querySelector(".labVideo");
+  fetch("https://localhost:7266/api/MedicalVideos/GetMedicalVideos", {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => {
+    if (!response.ok)
+      return new Error("Response not ok");
+    return response.json();
+  }).then(data => {
+    var firstVideo = data[0];
+    console.log(firstVideo);
+    labVideo.innerHTML = `
+    <div class="info">
+      <div class="title">See What Makes Us Different</div>
+      <div class="description">${firstVideo.description}</div>
+    </div>
+    <div class="video">
+      <video id="vid" class=".custom-video" controls poster="./images/1600px_COLOURBOX9567762.jpg">
+        <source src= ${firstVideo.path} type="video/mp4">
+        your browser does not support video tag
+      </video>
+    </div>
+  `;
+  })
+}
+
+// playButton.addEventListener('click', function () {
+//   if (video.paused) {
+//     video.play();
+//     playButton.style.display = 'none'; 
+//   } else {
+//     video.pause();
+//   }
+// });
+
+// video.addEventListener('ended', function () {
+//   playButton.style.display = 'block'; 
+// });
+
+// console.log(video)
+// console.log(playButton)

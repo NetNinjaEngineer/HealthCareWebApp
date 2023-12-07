@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  background-color: #f0f0f0;
+  background-color: #F4F9FF;
 }
 
 /* Sidebar Styles */
@@ -99,6 +99,7 @@ main .SEC .sec1 {
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px 0px 0px 0px #63a6f7;
 }
 
 main .SEC .sec1 .info {
@@ -131,10 +132,6 @@ main .SEC .sec1 .button button {
   border-radius: 20px;
   border: none;
   margin-top: 20px;
-}
-
-main .SEC {
-  box-shadow: 0px 0px 0px 0px #63a6f7;
 }
 
 
@@ -227,16 +224,16 @@ main .SEC .sec2 .doctors .doctor .image:hover {
 main .SEC .sec2 .doctors .doctor .image img:hover {
   opacity: 0.5;
 
-} 
+}
 
 main .patientappointments,
 main .employeeSchedual {
-    width: 100%;
-    margin-top: 50px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 30px 20px #F4F9FF;
+  width: 100%;
+  margin-top: 50px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px 20px #F4F9FF;
 }
 
 main .patientappointments .header .title,
@@ -265,6 +262,7 @@ table th {
   border: none;
   font-size: 1.1em;
 }
+
 table td {
   padding: 8px;
   text-align: left;
@@ -283,10 +281,8 @@ main .headerBar {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  /* background-color: #ffffffa7; */
   background-color: #fff;
   padding: 30px 10px;
-  /* border-radius: 10px; */
   box-shadow: 0 0 80px 0px rgba(182, 200, 222, 0.284);
   position: sticky;
   top: 0px;
@@ -316,7 +312,7 @@ main .headerBar .search-notification svg.notification {
   border-radius: 50%;
   color: white;
   background-color: #0060D3;
-  padding:  10px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -335,9 +331,9 @@ main .headerBar .search-notification input {
 }
 
 main .headerBar .search-notification .searchIcon {
-    position: relative;
-    left: 30px;
-    color: #418EFD;
+  position: relative;
+  left: 30px;
+  color: #418EFD;
 }
 
 .patientappointments .header {
@@ -384,5 +380,132 @@ main .headerBar .search-notification .searchIcon {
   background-color: #F4F9FF;
   outline: none;
   border: none;
-  color:#ABACAB;
+  color: #ABACAB;
 }
+
+.dark-mode {
+  background-color: #0B0F19;
+  color: #fff;
+}
+
+.dark-mode .sidebar,
+.dark-mode main .SEC .sec1,
+.dark-mode main .SEC .sec2,
+.dark-mode .patientappointments,
+.dark-mode .patientappointments table td,
+.dark-mode .employeeSchedual,
+.dark-mode .employeeSchedual table td,
+.dark-mode .doctors .doctor .info {
+  background-color: #151822;
+  color: white;
+  box-shadow: 0px 0px 0px 0px rgba(176, 205, 240, 0.445);
+}
+
+.dark-mode main .headerBar .search-notification input,
+.dark-mode main .patientappointments .header .list #appointments,
+.dark-mode main .patientappointments .header .list #appointments option,
+.dark-mode .employeeSchedual .header .page input {
+  background-color: #222;
+  color: #ffff;
+}
+
+.dark-mode .headerBar {
+  background-color: #222;
+  color: #ffff;
+  box-shadow: 0 0 0 0 0 ;
+}
+
+.dark-mode main .SEC .sec2 .head button {
+  background-color: #151822;
+}
+
+.dark-mode main .SEC .sec2 .head button:hover {
+  color: #0060D3;
+  background-color: #5E61E4;
+  color: white;
+}
+
+.dark-mode main .headerBar h2 span, 
+.dark-mode main .SEC .sec2 .head .title {
+  color: #67a8f8;
+}
+
+section.labVideo{
+  width: 100%;
+  height: 100vh;
+  margin-top: 40px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  color: black;
+  padding: 20px 0px 0px 0px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px 20px #F4F9FF;
+  margin-bottom: 40px;
+}
+
+section.labVideo .info {
+  height: 15%;
+}
+
+section.labVideo .info .title{
+  color: black;
+  font-size: 30px;
+  font-weight: 800;
+  padding-bottom: 10px;
+}
+
+section.labVideo .info .description {
+  font-weight: 500;
+  font-size: 18px;
+  color: #939ABD;
+  padding-bottom: 40px;
+}
+
+section.labVideo .video {
+  height: 85%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+section.labVideo .video video {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.custom-video::poster {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* video::-webkit-media-controls {
+  display: none;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background-color: #0060D3;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.play-button::before {
+  content: '\25B6'; 
+  font-size: 30px;
+  line-height: 60px;
+  text-align: center;
+} */
